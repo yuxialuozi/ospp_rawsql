@@ -1,11 +1,11 @@
 include "video.thrift"
 
 struct User {
-    1: i64 Id (go.tag="sql:\"id,omitempty\"")
-    2: string Username (go.tag="sql:\"username\"")
-    3: i32 Age (go.tag="sql:\"age\"")
-    4: string City (go.tag="sql:\"city\"")
-    5: bool Banned (go.tag="sql:\"banned\"")
+    1: i64 Id (thrift.sql="id", thrift.auto_increment="true", thrift.primary_key="true")
+    2: string Username (thrift.sql="username", thrift.unique="true", thrift.not_null="true")
+    3: i32 Age (thrift.sql="age", thrift.not_null="true")
+    4: string City (thrift.sql="city")
+    5: bool Banned (thrift.sql="banned", thrift.default="false")
 }
 
 (
