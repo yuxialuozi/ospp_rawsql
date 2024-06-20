@@ -176,12 +176,6 @@ const (
 	thriftNotNull    = "thrift.not_null"    // 非空
 	thriftDefault    = "thrift.default"     // 默认值
 
-	// Relationship annotations
-	thriftForeignKey = "thrift.foreign_key"  // 外键
-	thriftManyToOne  = "thrift.many_to_one"  // 多对一
-	thriftOneToMany  = "thrift.one_to_many"  // 一对多
-	thriftManyToMany = "thrift.many_to_many" // 多对多
-
 	// Miscellaneous annotations
 	thriftAutoIncrement = "thrift.auto_increment" // 自动递增
 	thriftIgnored       = "thrift.ignored"        // 忽略字段
