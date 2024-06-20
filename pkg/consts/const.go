@@ -167,18 +167,18 @@ const (
 
 const (
 	// SQL annotations for database field mapping
-	thriftSql = "thrift.sql" // 字段名的定义
+	ThriftSql = "thrift.sql" // 字段名的定义
 
 	// Common field annotations
-	thriftPrimaryKey = "thrift.primary_key" // 主键
-	thriftUnique     = "thrift.unique"      // 唯一键
-	thriftIndex      = "thrift.index"       // 索引
-	thriftNotNull    = "thrift.not_null"    // 非空
-	thriftDefault    = "thrift.default"     // 默认值
+	ThriftPrimaryKey = "thrift.primary_key" // 主键
+	ThriftUnique     = "thrift.unique"      // 唯一键
+	ThriftIndex      = "thrift.index"       // 索引
+	ThriftNotNull    = "thrift.not_null"    // 非空
+	ThriftDefault    = "thrift.default"     // 默认值
 
 	// Miscellaneous annotations
-	thriftAutoIncrement = "thrift.auto_increment" // 自动递增
-	thriftIgnored       = "thrift.ignored"        // 忽略字段
+	ThriftAutoIncrement = "thrift.auto_increment" // 自动递增
+	ThriftIgnored       = "thrift.ignored"        // 忽略字段
 )
 
 const (
