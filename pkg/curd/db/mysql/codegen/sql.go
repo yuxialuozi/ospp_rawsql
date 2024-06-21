@@ -6,7 +6,7 @@ import (
 )
 
 // queryName := "FindByLbLbUsernameEqualOrUsernameEqualRbAndAgeGreaterThanRb"
-func generateSQL(queryName string) string {
+func sqlCodegen(queryName string) string {
 	parts := strings.Split(queryName, "By")
 	if len(parts) != 2 {
 		return ""

@@ -37,6 +37,10 @@ type ModelArgument struct {
 	FieldWithIndexTag bool
 	FieldWithTypeTag  bool
 	SQLDir            string
+	IdlPath           string //idl路径
+	IdlType           string //idl的类型
+	DaoDir            string //指定生成的curd代码目录，默认为biz/db/dao
+	SQLOutDir         string //指定生成sql代码目录，默认为biz/db/dao/sql
 }
 
 func NewModelArgument() *ModelArgument {
@@ -61,5 +65,6 @@ func (c *ModelArgument) ParseCli(ctx *cli.Context) error {
 	c.FieldWithIndexTag = ctx.Bool(consts.IndexTag)
 	c.FieldWithTypeTag = ctx.Bool(consts.TypeTag)
 	c.SQLDir = ctx.String(consts.SQLDir)
+	c.IdlPath = ctx.String(consts.IDLPath)
 	return nil
 }
