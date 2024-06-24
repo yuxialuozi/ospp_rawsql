@@ -20,6 +20,7 @@ func HandleCodegen(ifOperations []*parse.InterfaceOperation) (methodRenders [][]
 	for _, ifOperation := range ifOperations {
 		methods := make([]*template.MethodRender, 0)
 		for _, operation := range ifOperation.Operations {
+
 			switch operation.GetOperationName() {
 			case parse.Insert:
 				insert := operation.(*parse.InsertParse)
@@ -38,100 +39,16 @@ func HandleCodegen(ifOperations []*parse.InterfaceOperation) (methodRenders [][]
 				methods = append(methods, method)
 
 			case parse.Find:
-				find := operation.(*parse.FindParse)
-				method := &template.MethodRender{
-					Name: find.BelongedToMethod.Name,
-					MethodReceiver: code.MethodReceiver{
-						Name: "r",
-						Type: code.StarExprType{
-							RealType: code.IdentType(ifOperation.BelongedToStruct.Name + "RepositoryMongo"),
-						},
-					},
-					Params:  find.BelongedToMethod.Params,
-					Returns: find.BelongedToMethod.Returns,
-					//MethodBody: findCodegen(find),
-				}
-				methods = append(methods, method)
 
 			case parse.Update:
-				update := operation.(*parse.UpdateParse)
-				method := &template.MethodRender{
-					Name: update.BelongedToMethod.Name,
-					MethodReceiver: code.MethodReceiver{
-						Name: "r",
-						Type: code.StarExprType{
-							RealType: code.IdentType(ifOperation.BelongedToStruct.Name + "RepositoryMongo"),
-						},
-					},
-					Params:  update.BelongedToMethod.Params,
-					Returns: update.BelongedToMethod.Returns,
-					//MethodBody: updateCodegen(update),
-				}
-				methods = append(methods, method)
 
 			case parse.Delete:
-				del := operation.(*parse.DeleteParse)
-				method := &template.MethodRender{
-					Name: del.BelongedToMethod.Name,
-					MethodReceiver: code.MethodReceiver{
-						Name: "r",
-						Type: code.StarExprType{
-							RealType: code.IdentType(ifOperation.BelongedToStruct.Name + "RepositoryMongo"),
-						},
-					},
-					Params:  del.BelongedToMethod.Params,
-					Returns: del.BelongedToMethod.Returns,
-					//MethodBody: deleteCodegen(del),
-				}
-				methods = append(methods, method)
 
 			case parse.Count:
-				count := operation.(*parse.CountParse)
-				method := &template.MethodRender{
-					Name: count.BelongedToMethod.Name,
-					MethodReceiver: code.MethodReceiver{
-						Name: "r",
-						Type: code.StarExprType{
-							RealType: code.IdentType(ifOperation.BelongedToStruct.Name + "RepositoryMongo"),
-						},
-					},
-					Params:  count.BelongedToMethod.Params,
-					Returns: count.BelongedToMethod.Returns,
-					//MethodBody: countCodegen(count),
-				}
-				methods = append(methods, method)
 
 			case parse.Bulk:
-				bulk := operation.(*parse.BulkParse)
-				method := &template.MethodRender{
-					Name: bulk.BelongedToMethod.Name,
-					MethodReceiver: code.MethodReceiver{
-						Name: "r",
-						Type: code.StarExprType{
-							RealType: code.IdentType(ifOperation.BelongedToStruct.Name + "RepositoryMongo"),
-						},
-					},
-					Params:  bulk.BelongedToMethod.Params,
-					Returns: bulk.BelongedToMethod.Returns,
-					//MethodBody: bulkCodegen(bulk),
-				}
-				methods = append(methods, method)
 
 			case parse.Transaction:
-				ta := operation.(*parse.TransactionParse)
-				method := &template.MethodRender{
-					Name: ta.BelongedToMethod.Name,
-					MethodReceiver: code.MethodReceiver{
-						Name: "r",
-						Type: code.StarExprType{
-							RealType: code.IdentType(ifOperation.BelongedToStruct.Name + "RepositoryMongo"),
-						},
-					},
-					Params:  ta.BelongedToMethod.Params,
-					Returns: ta.BelongedToMethod.Returns,
-					//MethodBody: taCodegen(ta),
-				}
-				methods = append(methods, method)
 
 			default:
 			}
