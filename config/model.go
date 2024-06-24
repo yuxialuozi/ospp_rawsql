@@ -17,6 +17,8 @@
 package config
 
 import (
+	"fmt"
+	"github.com/cloudwego/hertz/cmd/hz/util"
 	"github.com/urfave/cli/v2"
 	"ospp_rawsql/pkg/consts"
 	"strings"
@@ -41,6 +43,7 @@ type ModelArgument struct {
 	IdlType           string //idl的类型
 	DaoDir            string //指定生成的curd代码目录，默认为biz/db/dao
 	SQLOutDir         string //指定生成sql代码目录，默认为biz/db/dao/sql
+	GenBase           bool
 }
 
 func NewModelArgument() *ModelArgument {
@@ -66,5 +69,21 @@ func (c *ModelArgument) ParseCli(ctx *cli.Context) error {
 	c.FieldWithTypeTag = ctx.Bool(consts.TypeTag)
 	c.SQLDir = ctx.String(consts.SQLDir)
 	c.IdlPath = ctx.String(consts.IDLPath)
+	return nil
+}
+
+func (d *ModelArgument) Unpack(data []string) error {
+	err := util.UnpackArgs(data, d)
+	if err != nil {
+		return fmt.Errorf("unpack argument failed: %s", err)
+	}
+	return nil
+}
+
+func (d *DocArgument) modelUnpack(data []string) error {
+	err := util.UnpackArgs(data, d)
+	if err != nil {
+		return fmt.Errorf("unpack argument failed: %s", err)
+	}
 	return nil
 }
