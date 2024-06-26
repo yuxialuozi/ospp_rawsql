@@ -25,7 +25,7 @@ const (
 
 const (
 	CwgoDocPluginMode       = "CWGO_DOC_PLUGIN_DOC"
-	ThriftCwgoDocPluginName = "thrift-gen-cwgo-doc"
+	ThriftCwgoDocPluginName = "thrift-gen-cwgo-db"
 )
 
 const (
@@ -70,8 +70,8 @@ const (
 	DefaultHZClientDir    = "biz/http"
 	DefaultKitexModelDir  = "kitex_gen"
 	DefaultDbOutDir       = "biz/dal/query"
-	DefaultDocModelOutDir = "biz/doc/model"
-	DefaultDocDaoOutDir   = "biz/doc/dao"
+	DefaultDocModelOutDir = "biz/db/model"
+	DefaultDocDaoOutDir   = "biz/db/dao"
 	Standard              = "standard"
 	StandardV2            = "standard_v2"
 	CurrentDir            = "."

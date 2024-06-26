@@ -80,6 +80,20 @@ func (d *ModelArgument) Unpack(data []string) error {
 	return nil
 }
 
+func (d *ModelArgument) Pack() ([]string, error) {
+	data, err := util.PackArgs(d)
+	if err != nil {
+		return nil, fmt.Errorf("pack argument failed: %s", err)
+	}
+	return data, nil
+}
+
+func (d *ModelArgument) GetThriftgoOptions(prefix string) (string, error) {
+	d.ThriftOptions = append(d.ThriftOptions, "package_prefix="+prefix)
+	gas := "go:" + strings.Join(d.ThriftOptions, ",")
+	return gas, nil
+}
+
 func (d *DocArgument) modelUnpack(data []string) error {
 	err := util.UnpackArgs(data, d)
 	if err != nil {

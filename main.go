@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"ospp_rawsql/pkg/tmplate"
-	"text/template"
 )
 
 func main() {

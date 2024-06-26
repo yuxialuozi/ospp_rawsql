@@ -2,13 +2,13 @@ package pulgin
 
 import (
 	"fmt"
-	"github.com/cloudwego/cwgo/pkg/curd/template"
-	"github.com/cloudwego/hertz/cmd/hz/meta"
-	"github.com/cloudwego/hertz/cmd/hz/util/logs"
-	"github.com/cloudwego/thriftgo/plugin"
+	cwgoMeta "github.com/cloudwego/cwgo/meta"
+
+	"go/format"
 	"io"
 	"os"
 	"ospp_rawsql/config"
+	"ospp_rawsql/pkg/curd/code"
 	"ospp_rawsql/pkg/curd/db/mysql/codegen"
 	"ospp_rawsql/pkg/curd/extract"
 	"ospp_rawsql/pkg/curd/parse"
@@ -118,4 +118,45 @@ func response(res *plugin.Response) error {
 		return fmt.Errorf("write response failed: %s", err.Error())
 	}
 	return nil
+}
+
+func getBaseRender(st *extract.IdlExtractStruct) *template.BaseRender {
+	pkgName := extract.GetPkgName(st.Name)
+	return &template.BaseRender{
+		Version:     cwgoMeta.Version,
+		PackageName: pkgName,
+		Imports:     codegen.BaseMysqlImports,
+	}
+}
+
+func getNewIfCode(st *extract.IdlExtractStruct, baseRender *template.BaseRender) (string, error) {
+	tplIf := &template.Template{
+		Renders: []template.Render{},
+	}
+	tplIf.Renders = append(tplIf.Renders, baseRender)
+
+	methods := make(code.InterfaceMethods, 0, 10)
+	for _, rawMethod := range st.InterfaceInfo.Methods {
+		methods = append(methods, code.InterfaceMethod{
+			Name:    rawMethod.Name,
+			Params:  rawMethod.Params,
+			Returns: rawMethod.Returns,
+		})
+	}
+	ifRender := &template.InterfaceRender{
+		Name:    st.Name + "Repository",
+		Methods: methods,
+	}
+	tplIf.Renders = append(tplIf.Renders, ifRender)
+
+	buff, err := tplIf.Build()
+	if err != nil {
+		return "", err
+	}
+	formattedCode, err := format.Source(buff.Bytes())
+	if err != nil {
+		return "", err
+	}
+
+	return string(formattedCode), nil
 }

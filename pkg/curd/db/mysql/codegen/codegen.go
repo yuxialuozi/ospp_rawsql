@@ -1,9 +1,9 @@
 package codegen
 
 import (
-	"github.com/cloudwego/cwgo/pkg/curd/template"
 	"ospp_rawsql/pkg/curd/extract"
 	"ospp_rawsql/pkg/curd/parse"
+	"ospp_rawsql/pkg/template"
 )
 
 func HandleCodegen(ifOperations []*parse.InterfaceOperation) (methodRenders [][]*template.MethodRender) {
@@ -34,7 +34,7 @@ func HandleCodegen(ifOperations []*parse.InterfaceOperation) (methodRenders [][]
 	return
 }
 
-var BaseMongoImports = map[string]string{
+var BaseMysqlImports = map[string]string{
 	"context": "",
 }
 
