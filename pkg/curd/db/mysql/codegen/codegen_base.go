@@ -1,6 +1,9 @@
 package codegen
 
-import "github.com/cloudwego/cwgo/pkg/curd/template"
+import (
+	"ospp_rawsql/pkg/curd/code"
+	"ospp_rawsql/pkg/template"
+)
 
 func HandleBaseCodegen() []*template.MethodRender {
 	var methods []*template.MethodRender
@@ -51,7 +54,20 @@ func updateOneMethod() *template.MethodRender {
 }
 
 func insertOneMethod() *template.MethodRender {
-	return nil
+	return &template.MethodRender{
+		Name: "MInsertOne",
+		MethodReceiver: code.MethodReceiver{
+			Name: "b",
+			Type: code.StarExprType{
+				RealType: code.IdentType("BaseRepositoryMongo"),
+			},
+		},
+		Params: GetMInsertOneParams(),
+		Returns: code.Returns{
+			code.IdentType("(*mongo.InsertOneResult, error)"),
+		},
+		MethodBody: insertOneBaseCodegen(),
+	}
 }
 
 func findSortPageListMethod() *template.MethodRender {

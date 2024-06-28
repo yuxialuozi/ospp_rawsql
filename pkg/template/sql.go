@@ -16,6 +16,5 @@ func (sr *SQLRender) RenderSQL(buffer *bytes.Buffer) error {
 	if _, err := buffer.WriteString(sr.SQLBody + ";\n"); err != nil {
 		return err
 	}
-
 	return nil
 }

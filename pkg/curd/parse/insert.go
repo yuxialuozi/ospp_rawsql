@@ -14,6 +14,10 @@ type InsertParse struct {
 
 	// BelongedToMethod defines the method to which Insert belongs
 	BelongedToMethod *extract.InterfaceMethod
+
+	TableName string          // 要插入数据的表名
+	Columns   []string        // 要插入数据的列名
+	Values    [][]interface{} // 要插入的具体数值，二维数组表示多条数据的插入
 }
 
 func (ip *InsertParse) GetOperationName() string {

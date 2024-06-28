@@ -2,8 +2,7 @@ package template
 
 import (
 	"bytes"
-
-	"github.com/cloudwego/cwgo/pkg/curd/code"
+	"ospp_rawsql/pkg/curd/code"
 )
 
 var structTemplate = `{{.Comment}}

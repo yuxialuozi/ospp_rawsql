@@ -13,7 +13,6 @@ import (
 type InterfaceOperation struct {
 	BelongedToStruct *extract.IdlExtractStruct
 	Operations       []Operation
-	SqlOperation     SqlOperation
 }
 
 const (
