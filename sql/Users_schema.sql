@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS Users;
+CREATE TABLE IF NOT EXISTS Users (
+	Id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	Age int,
+	Banned boolean,
+	DefaultAge int DEFAULT 18
+);

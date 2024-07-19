@@ -1,0 +1,11 @@
+CREATE TABLE Users (
+  Id BIGINT PRIMARY KEY AUTO_INCREMENT
+  Username VARCHAR(255)
+  Age INT
+  City VARCHAR(255)
+  Banned BOOLEAN
+  RoleId BIGINT
+  Email VARCHAR(255)
+  DefaultAge INT DEFAULT 18
+);
+
